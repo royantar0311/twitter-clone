@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
         last: { type: String, required: true, trim: true} 
     },
     tweets: [{type: mongoose.Schema.ObjectId, ref: 'Tweet'}]
-});
+}, { strict: true, timestamps: true });
 
 userSchema.path('email').validate(function(email){
     const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;

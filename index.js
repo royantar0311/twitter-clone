@@ -1,39 +1,22 @@
-import {User, Tweet} from './db/mongodb/index'
+import {User, Tweet, Follow} from './db/mongodb/index'
+import { getOwnTweets, follow, createUser, tweet, unfollow, findAllTweetOfFollowings } from './db/mongodb/operations'
 import mongoose from 'mongoose';
-(async () => {
-    try{
-        const user_id = mongoose.Types.ObjectId();
-        const tweet_id = mongoose.Types.ObjectId();
-        console.log(user_id, tweet_id);
-        const user = new User({
-            _id: user_id,
-            email: 'royantar1@gmail.com',
-            username: 'royantar0311',
-            name: {
-                first: 'antar',
-                last: 'roy'
-            }
-        });
-        const tweet = new Tweet({
-            _id: tweet_id,
-            text: 'this is a tweet with hashtags #endregion #twitter-clone',
-            author: user._id
-        })
-        user.tweets.push(tweet._id);       
-        const tweetResult = await tweet.save();
-        const userResult = await user.save();
-        console.log("tweet -> ", tweetResult);
-        console.log("user -> ", userResult)
-    }catch(err){
-        console.log(err);
+
+const userData = {
+    email: 'royantar2@gmail.com',
+    username: 'royantar0312',
+    name: {
+        first: 'antar',
+        last: 'roy'
     }
+};
+const tweetData = {
+    text: 'second tweet #endregion #twitter-clone',
+};
+(async () => {
+    // console.log(await follow('60674ec0ddb22f4bafe4f672', '60674e851c613b4ae875ecb1'));
+    // console.log(await findAllTweetOfFollowings('60674ec0ddb22f4bafe4f672'));
+    // await createUser(userData);   
+    // console.log(await tweet('60674ec0ddb22f4bafe4f672', tweetData)); 
 })();
-(async () => {
-    try{
-        const tweet = await Tweet.findOne({_id: '6066cb959f29f53a685ec3eb'}).populate('author');
-        console.log(tweet);
-    }
-    catch(err) {
-        console.log(err);
-    }
-});
+

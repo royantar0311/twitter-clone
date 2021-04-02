@@ -4,7 +4,7 @@ const tweetSchema = mongoose.Schema({
     text: { type: String, required: true},
     author: { type: mongoose.Schema.ObjectId, ref: 'User'},
     tags: {type: Array},
-});
+}, { strict: true, timestamps: true });
 
 tweetSchema.path('text').validate(function(text){
     if( text.length > 120 ) return false;
