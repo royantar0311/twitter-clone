@@ -4,7 +4,7 @@
    - [x] Users can follow or unfollow other users.
    - [x] Users should be able to fetch all tweets from the users they are following. These tweets should also be ordered latest first, i.e tweets tweeted more recently should appear first.
    - [x] Users should be able to add tags to their tweets.
-   - [ ] Users should be able to find all tweets from themselves or the users they are following with a certain tag.
+   - [x] Users should be able to find all tweets from themselves or the users they are following with a certain tag.
 
 # using import in node
 using esm module
@@ -18,7 +18,11 @@ ref will store an object id only but while searching for a document, populate wi
 
 # or/and operation in a query mongoose
 
-chaining can be done
 ```
-Model.find().and().or().sort()
+Model.find({ $and: [
+   $or: [],
+   $and: [
+      $or: [],
+   ]
+]})
 ```

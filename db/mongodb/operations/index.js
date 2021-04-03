@@ -51,7 +51,29 @@ const findAllTweetOfFollowings = async (author_id) => {
         author_ids.push({author: followArray[i]});
     }
     author_ids.push({author: follow.user});
-    return await Tweet.find().or(author_ids).sort({createdAt: -1});
+    return await Tweet.find({ $or: author_ids}).sort({createdAt: -1});
+}
+
+const findByTags = async (author_id, tags) => {
+    const tagObjectArray = [];
+    tags.forEach(element => {
+        tagObjectArray.push({tags: element})
+    });
+    const author_ids = [];
+    const follow = await Follow.findOne({user: author_id});
+    const followArray = follow.following;
+    for(let i=0;i<followArray.length; i++){
+        author_ids.push({author: followArray[i]});
+    }
+    author_ids.push({author: follow.user});
+    console.log("tag object array -> " , tagObjectArray);
+    console.log("author ids -> " , author_ids);
+    return await Tweet.find({
+        $and: [
+            { $or: author_ids},
+            { $or: tagObjectArray}
+        ]
+    }).sort({createdAt: -1});
 }
 
 export {
@@ -60,5 +82,6 @@ export {
     unfollow,
     createUser,
     findAllTweetOfFollowings,
+    findByTags,
     tweet
 }
