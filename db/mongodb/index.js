@@ -3,7 +3,7 @@ import Tweet from './tweets.schema';
 import Follow from './follows.schema';
 import mongoose from './connection';
 
-export  {
+export {
     User,
     Tweet,
     Follow,

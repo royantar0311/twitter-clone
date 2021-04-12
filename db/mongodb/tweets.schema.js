@@ -1,13 +1,13 @@
 import mongoose from './connection';
 
 const tweetSchema = mongoose.Schema({
-    text: { type: String, required: true},
-    author: { type: mongoose.Schema.ObjectId, ref: 'User'},
-    tags: {type: Array},
+    text: { type: String, required: true },
+    author: { type: mongoose.Schema.ObjectId, ref: 'User' },
+    tags: { type: Array },
 }, { strict: true, timestamps: true });
 
-tweetSchema.path('text').validate(function(text){
-    if( text.length > 120 ) return false;
+tweetSchema.path('text').validate(function (text) {
+    if (text.length > 120) return false;
     var re = /(?:^|\W)#(\w+)(?!\w)/g, match, tags = [];
     while (match = re.exec(text)) {
         tags.push(match[1]);

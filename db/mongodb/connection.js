@@ -1,9 +1,11 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from "dotenv";
 
+dotenv.config();
 const options = {
     useUnifiedTopology: true,
+    useCreateIndex: true,
+    useNewUrlParser: true
 };
 
 mongoose.connect(process.env.MONGO_URL, options, (err) => {

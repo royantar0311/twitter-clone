@@ -5,6 +5,43 @@
    - [x] Users should be able to fetch all tweets from the users they are following. These tweets should also be ordered latest first, i.e tweets tweeted more recently should appear first.
    - [x] Users should be able to add tags to their tweets.
    - [x] Users should be able to find all tweets from themselves or the users they are following with a certain tag.
+# Auth
+
+## Sign Up
+
+Route: /auth/signup
+Method: POST
+Example:
+```
+request: {
+	"username": "username",
+	"password": "password",
+	"firstName": "firstName",
+	"lastName": "lastName",
+	"email": "email@email.com"
+}
+response: 
+{
+  "message": "success || error message"
+}
+```
+
+## Log In
+
+Route: /auth/login
+Method: POST
+Example:
+```
+request: {
+	"email": "royantar1@gmai.com",
+	"password": "123456"
+}
+response: 
+{
+  "message": "success || error message",
+  "token: "token"
+}
+```
 
 # using import in node
 using esm module
